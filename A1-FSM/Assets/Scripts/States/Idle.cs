@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Idle : States
+public class IDLE : States
 {
-    public Idle(BOT statemachine)
+    public IDLE(BOT statemachine)
     {
         fsm = statemachine;
     }
@@ -16,7 +16,7 @@ public class Idle : States
 
     public override void Execute()
     {
-        Debug.Log("Waiting for a customer...")
+        Debug.Log("Waiting for a customer...");
         fsm.ChangeState(fsm.TransactionState);
     }
 

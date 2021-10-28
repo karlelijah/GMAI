@@ -18,5 +18,4 @@ public abstract class States
     {
 
     }
-    public float time = 0f;
 }

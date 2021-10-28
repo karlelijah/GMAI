@@ -2,17 +2,68 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Transition : MonoBehaviour
+public class Transaction : States
 {
-    // Start is called before the first frame update
-    void Start()
+    private List<string> bundleList = new List<string>{"A", "B", "C", "D"};
+    public List<string> bundleSelected = new List<string>{};
+
+    //How can I implement whether the customer has made payment?
+
+    public Transaction(BOT statemachine)
     {
-        
+        fsm = statemachine;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        Debug.Log("Entered Transaction State");
+        selectBundle();
+    }
+
+    public override void Execute()
+    {
+        checkBundle();
+    }
+
+    public override void Exit()
+    {
+        bundleSelected.Clear();
+        Debug.Log("Exiting Transaction State");
+    }
+
+    private void selectBundle()
+    {
+        //Randomize the list to retrieve what the bundle will be for the current customer
+        int randomNumber = Random.Range(1,4);
+        bundleSelected.Add(bundleList[randomNumber]);
+    }
+
+    private void checkBundle()
+    {
+        //check what bundle the customer has chosen
+        if (bundleSelected.Contains("A"))
+        {
+            Debug.Log("The customer has chosen Set A and has paid $25.");
+            fsm.ChangeState(fsm.HaircutState);
+        }
+        if (bundleSelected.Contains("B"))
+        {
+            Debug.Log("The customer has chosen Set B and has paid $35.");
+            fsm.ChangeState(fsm.HaircutState);
+        }
+        if (bundleSelected.Contains("C"))
+        {
+            Debug.Log("The customer has chosen Set C and has paid $50.");
+            fsm.ChangeState(fsm.TreadmillStationState);
+        }
+        if (bundleSelected.Contains("D"))
+        {
+            Debug.Log("The customer has chosen Set D and has paid $55.");
+            fsm.ChangeState(fsm.SwimmingStationState);
+        }
+        else
+        {
+            Debug.Log("Waiting for the customer to choose a bundle...");
+        }  
     }
 }

@@ -2,17 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HoldingArea : MonoBehaviour
+public class HoldingArea : States
 {
-    // Start is called before the first frame update
-    void Start()
+    public HoldingArea(BOT statemachine)
     {
-        
+        fsm = statemachine;
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Enter()
     {
-        
+        Debug.Log("Entered Idle State");
+    }
+
+    public override void Execute()
+    {
+        Debug.Log("Waiting for a customer...");
+        fsm.ChangeState(fsm.TransactionState);
+    }
+
+    public override void Exit()
+    {
+        Debug.Log("Exiting Idle State");
     }
 }

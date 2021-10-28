@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BOT : MonoBehavior
+public class BOT : MonoBehaviour
 {
     States m_currentState;
 
-    public States IdleState;
+    public States IDLEState;
     public States TransactionState;
     public States SwimmingStationState;
     public States TreadmillStationState;
@@ -23,11 +23,11 @@ public class BOT : MonoBehavior
     
     private void Start()
     {
-        IdleState = new Idle(this);
+        IDLEState = new IDLE(this);
         TransactionState = new Transaction(this);
-        SwimmingStationState = new Swimming(this);
-        TreadmillStationState = new Treadmill(this);
-        DrinkingStationState = new Drink(this);
+        SwimmingStationState = new SwimmingStation(this);
+        TreadmillStationState = new TreadmillStation(this);
+        DrinkingStationState = new DrinkingStation(this);
         HaircutState = new Haircut(this);
         ShowerState = new Shower(this);
         DetailState = new Detail(this);
@@ -37,10 +37,10 @@ public class BOT : MonoBehavior
         ReturnState = new Return(this);
     }
 
-    publid void ChangeState(States nextState)
+    public void ChangeState(States nextState)
     {
         m_currentState.Exit();
         m_currentState = nextState;
-        m_currentState.State();
+        m_currentState.Enter();
     }
 }
