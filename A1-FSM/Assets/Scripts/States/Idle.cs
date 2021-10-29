@@ -11,17 +11,30 @@ public class IDLE : States
 
     public override void Enter()
     {
-        Debug.Log("Entered Idle State");
-    }
-
-    public override void Execute()
-    {
-        Debug.Log("Waiting for a customer...");
-        fsm.ChangeState(fsm.TransactionState);
+        if (fsm.OwnerReturned)
+        {
+            Debug.Log("The owner has returned.");
+            fsm.SetCurrentState(StateTypes.RETURN);
+        }
+        else
+        {
+            Debug.Log("Entered IDLE State");
+            Debug.Log("Waiting for a customer...");
+            Debug.Log("There is a customer. Press Space to enter TRANSACTION state.");
+        }
     }
 
     public override void Exit()
     {
-        Debug.Log("Exiting Idle State");
+        Debug.Log("Exiting IDLE State");
+    }
+
+    public override void Update()
+    {
+        //Debug.Log("IDLE Update");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            fsm.SetCurrentState(StateTypes.TRANSACTION);
+        }
     }
 }

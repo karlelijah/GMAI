@@ -12,45 +12,44 @@ public class DrinkingStation : States
 
     public override void Enter()
     {
-        Debug.Log("Entered DrinkingStation State");
+        Debug.Log("Entered DRINKINGSTATION State");
+        fsm.StartCoroutine(Coroutine_TakePetForDrink(timeRemaining));
     }
-
-    public override void Execute()
-    {
-        letPetDrink();
-    }
-
     public override void Exit()
     {
-        Debug.Log("Exiting DrinkingStation State");
+        Debug.Log("Exiting DRINKINGSTATION State");
     }
-
-    private void letPetDrink()
+    IEnumerator Coroutine_TakePetForDrink(float duration)
     {
         Debug.Log("Bot gave the pet a bowl of water to drink.");
-    }
-    void Update()
-    {
-        if (timeRemaining > 0)
+        float dt = 0.0f;
+        while(dt < duration)
         {
-            timeRemaining -= Time.deltaTime;
+            yield return new WaitForSeconds(1.0f);
+            dt += 1.0f;
         }
-        if (timeRemaining == 0)
+        
+        if(fsm.OwnerReturned)
+        {
+            Debug.Log("The owner has returned.");
+            fsm.SetCurrentState(StateTypes.RETURN);
+        }
+        else
         {
             if(SwimmingStation.swimCount < 2)
             {
                 Debug.Log("Bot will bring the pet back to the swimming pool for the second round.");
-                fsm.ChangeState(fsm.SwimmingStationState);
+                fsm.SetCurrentState(StateTypes.SWIMMINGSTATION);
             }
             if(TreadmillStation.runCount < 2)
             {
                 Debug.Log("Bot will bring the pet back to the treadmill for the second round.");
-                fsm.ChangeState(fsm.TreadmillStationState);
+                fsm.SetCurrentState(StateTypes.TREADMILLSTATION);
             }
             if(SwimmingStation.swimCount == 2 || TreadmillStation.runCount == 2)
             {
                 Debug.Log("The pet has finished 2 rounds of exercise and will head for their grooming now.");
-                fsm.ChangeState(fsm.HaircutState);
+                fsm.SetCurrentState(StateTypes.HAIRCUT);
             }
         }
     }

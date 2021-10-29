@@ -15,42 +15,38 @@ public class SwimmingStation : States
 
     public override void Enter()
     {
-        Debug.Log("Entered SwimmingStation State");
-    }
-
-    public override void Execute()
-    {        
-        takePetForSwim();
+        Debug.Log("Entered SWIMMINGSTATION State");
+        fsm.StartCoroutine(Coroutine_TakePetForSwim(timeRemaining));
     }
 
     public override void Exit()
     {
-        Debug.Log("Exiting SwimmingStation State");
+        Debug.Log("Exiting SWIMMINGSTATION State");
         if(swimCount == 2)
         {
             swimCount -= 2;
         }
     }
 
-    private void takePetForSwim()
+    IEnumerator Coroutine_TakePetForSwim(float duration)
     {
-        //let the pet swim for 20 minutes
-        //startExercising = true;
-        Debug.Log("The pet has just started swimming.");
-    }
-
-    void Update()
-    {
-        if (timeRemaining > 0)
+        Debug.Log("The pet has just started running.");
+        float dt = 0.0f;
+        while(dt < duration)
         {
-            timeRemaining -= Time.deltaTime;
+            yield return new WaitForSeconds(1.0f);
+            dt += 1.0f;
         }
-        if (timeRemaining == 0)
+        if(fsm.OwnerReturned)
         {
-            Debug.Log("20 minutes has passed. Bot will bring it to the drinking station for a drink.");
-            swimCount += 1;
-            //startExercising == false;
-            fsm.ChangeState(fsm.DrinkingStationState);
+            Debug.Log("The owner has returned.");
+            fsm.SetCurrentState(StateTypes.RETURN);
         }
+        else
+        {
+            swimCount =+ 1;
+            Debug.Log("The pet has swum for 20 minutes.");
+            fsm.SetCurrentState(StateTypes.DRINKINGSTATION);
+        }      
     }
 }

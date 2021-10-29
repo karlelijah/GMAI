@@ -2,45 +2,83 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum StateTypes
+{
+    IDLE,
+    TRANSACTION,
+    SWIMMINGSTATION,
+    TREADMILLSTATION,
+    DRINKINGSTATION,
+    HAIRCUT,
+    SHOWER,
+    DETAIL,
+    FEED,
+    FOODPREPARATION,
+    HOLDINGAREA,
+    RETURN,
+}
+
 public class BOT : MonoBehaviour
 {
     States m_currentState;
 
-    public States IDLEState;
-    public States TransactionState;
-    public States SwimmingStationState;
-    public States TreadmillStationState;
-    public States DrinkingStationState;
-    public States HaircutState;
-    public States ShowerState;
-    public States DetailState;
-    public States FeedState;
-    public States FoodPreparationState;
-    public States HoldingAreaState;
-    public States ReturnState;
-
     [SerializeField]
+
+    List<States> mStates = new List<States>();
+
+    public bool OwnerReturned {get;private set;} = false;
+    public bool petWaiting {get;private set;} = false;
     
     private void Start()
     {
-        IDLEState = new IDLE(this);
-        TransactionState = new Transaction(this);
-        SwimmingStationState = new SwimmingStation(this);
-        TreadmillStationState = new TreadmillStation(this);
-        DrinkingStationState = new DrinkingStation(this);
-        HaircutState = new Haircut(this);
-        ShowerState = new Shower(this);
-        DetailState = new Detail(this);
-        FeedState = new Feed(this);
-        FoodPreparationState = new FoodPreparation(this);
-        HoldingAreaState = new HoldingArea(this);
-        ReturnState = new Return(this);
+        mStates.Add(new IDLE(this));
+        mStates.Add(new Transaction(this));
+        mStates.Add(new SwimmingStation(this));
+        mStates.Add(new TreadmillStation(this));
+        mStates.Add(new DrinkingStation(this));
+        mStates.Add(new Haircut(this));
+        mStates.Add(new Shower(this));
+        mStates.Add(new Detail(this));
+        mStates.Add(new Feed(this));
+        mStates.Add(new FoodPreparation(this));
+        mStates.Add(new HoldingArea(this));
+        mStates.Add(new Return(this));
+        SetCurrentState(StateTypes.IDLE);
     }
 
-    public void ChangeState(States nextState)
+    private void Update() 
     {
-        m_currentState.Exit();
+        if(m_currentState != null)
+        {
+            m_currentState.Update();
+        }
+        
+        // check for owner return
+        // for this sample application
+        // owner return can be achieved by clicing the R button.
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            //SetCurrentState(StateTypes.RETURN);
+            OwnerReturned = true;
+        }
+    }
+
+    private void SetCurrentState(States nextState)
+    {
+        if(m_currentState != null)
+        {
+            m_currentState.Exit();
+        }
         m_currentState = nextState;
-        m_currentState.Enter();
+
+        if(m_currentState != null)
+        {
+            m_currentState.Enter();
+        }
+    }
+
+    public void SetCurrentState(StateTypes nextState)
+    {
+        SetCurrentState(mStates[(int)nextState]);
     }
 }

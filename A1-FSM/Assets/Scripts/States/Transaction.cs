@@ -16,19 +16,23 @@ public class Transaction : States
 
     public override void Enter()
     {
-        Debug.Log("Entered Transaction State");
-        selectBundle();
-    }
-
-    public override void Execute()
-    {
-        checkBundle();
+        if(fsm.OwnerReturned)
+        {
+            Debug.Log("The owner has returned.");
+            fsm.SetCurrentState(StateTypes.RETURN);
+        }
+        else
+        {
+            Debug.Log("Entered TRANSACTION State");
+            selectBundle();
+            checkBundle();
+        }
     }
 
     public override void Exit()
     {
         bundleSelected.Clear();
-        Debug.Log("Exiting Transaction State");
+        Debug.Log("Exiting TRANSACTION State");
     }
 
     private void selectBundle()
@@ -44,22 +48,22 @@ public class Transaction : States
         if (bundleSelected.Contains("A"))
         {
             Debug.Log("The customer has chosen Set A and has paid $25.");
-            fsm.ChangeState(fsm.HaircutState);
+            fsm.SetCurrentState(StateTypes.HAIRCUT);
         }
         if (bundleSelected.Contains("B"))
         {
             Debug.Log("The customer has chosen Set B and has paid $35.");
-            fsm.ChangeState(fsm.HaircutState);
+            fsm.SetCurrentState(StateTypes.HAIRCUT);
         }
         if (bundleSelected.Contains("C"))
         {
             Debug.Log("The customer has chosen Set C and has paid $50.");
-            fsm.ChangeState(fsm.TreadmillStationState);
+            fsm.SetCurrentState(StateTypes.TREADMILLSTATION);
         }
         if (bundleSelected.Contains("D"))
         {
             Debug.Log("The customer has chosen Set D and has paid $55.");
-            fsm.ChangeState(fsm.SwimmingStationState);
+            fsm.SetCurrentState(StateTypes.SWIMMINGSTATION);
         }
         else
         {

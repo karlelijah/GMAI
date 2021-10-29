@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shower : States
 {
+    private float timeRemaining = 4f;
     public Shower(BOT statemachine)
     {
         fsm = statemachine;
@@ -11,17 +12,31 @@ public class Shower : States
 
     public override void Enter()
     {
-        Debug.Log("Entered Idle State");
+        Debug.Log("Entered SHOWER State");
+        fsm.StartCoroutine(Coroutine_GiveShower(timeRemaining));
     }
-
-    public override void Execute()
-    {
-        Debug.Log("Waiting for a customer...");
-        fsm.ChangeState(fsm.TransactionState);
-    }
-
     public override void Exit()
     {
-        Debug.Log("Exiting Idle State");
+        Debug.Log("Exiting SHOWER State");
+    }
+    IEnumerator Coroutine_GiveShower(float duration)
+    {
+        Debug.Log("The BOT has started giving the pet a shower.");
+        float dt = 0.0f;
+        while(dt < duration)
+        {
+            yield return new WaitForSeconds(1.0f);
+            dt += 1.0f;
+        }
+        Debug.Log("The Shower is done");
+        if(fsm.OwnerReturned)
+        {
+            Debug.Log("The owner has returned.");
+            fsm.SetCurrentState(StateTypes.RETURN);
+        }
+        else
+        {
+            fsm.SetCurrentState(StateTypes.DETAIL);
+        }     
     }
 }

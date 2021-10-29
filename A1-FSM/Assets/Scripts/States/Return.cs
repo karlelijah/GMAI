@@ -11,17 +11,18 @@ public class Return : States
 
     public override void Enter()
     {
-        Debug.Log("Entered Idle State");
+        Debug.Log("Entered RETURN State");
+        handOverPetToOwner();
     }
-
-    public override void Execute()
-    {
-        Debug.Log("Waiting for a customer...");
-        fsm.ChangeState(fsm.TransactionState);
-    }
-
     public override void Exit()
     {
-        Debug.Log("Exiting Idle State");
+        Debug.Log("Exiting RETURN State");
+    }
+    public void handOverPetToOwner()
+    {
+        //fsm.OwnerReturned = false;
+        //fsm.petWaiting = false;
+        Debug.Log("Pet has been returned to owner");
+        fsm.SetCurrentState(StateTypes.IDLE);
     }
 }
