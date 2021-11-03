@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shower : States
 {
-    private float timeRemaining = 4f;
+    private float timeRemaining = 10.0f;
     public Shower(BOT statemachine)
     {
         fsm = statemachine;

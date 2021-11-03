@@ -5,7 +5,7 @@ using UnityEngine;
 public class Transaction : States
 {
     private List<string> bundleList = new List<string>{"A", "B", "C", "D"};
-    public List<string> bundleSelected = new List<string>{};
+    public static List<string> bundleSelected = new List<string>{};
 
     //How can I implement whether the customer has made payment?
 
@@ -31,13 +31,13 @@ public class Transaction : States
 
     public override void Exit()
     {
-        bundleSelected.Clear();
         Debug.Log("Exiting TRANSACTION State");
     }
 
     private void selectBundle()
     {
         //Randomize the list to retrieve what the bundle will be for the current customer
+        bundleSelected.Clear();
         int randomNumber = Random.Range(1,4);
         bundleSelected.Add(bundleList[randomNumber]);
     }

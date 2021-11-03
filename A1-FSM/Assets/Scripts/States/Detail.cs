@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Detail : States
 {
-    private float timeRemaining = 6f;
+    private float timeRemaining = 15.0f;
     public Detail(BOT statemachine)
     {
         fsm = statemachine;
@@ -21,7 +21,6 @@ public class Detail : States
     }
     IEnumerator Coroutine_GiveDetail(float duration)
     {
-        Debug.Log("The BOT has started giving the pet a shower.");
         float dt = 0.0f;
         while(dt < duration)
         {

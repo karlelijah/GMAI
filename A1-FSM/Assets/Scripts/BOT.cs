@@ -53,7 +53,8 @@ public class BOT : MonoBehaviour
             m_currentState.Update();
         }
         
-        // check for owner return
+        // The owner of a pet can return any moment by for now, we will make the Customer return
+        // by clicking the 
         // for this sample application
         // owner return can be achieved by clicing the R button.
         if(Input.GetKeyDown(KeyCode.R))

@@ -5,7 +5,7 @@ using UnityEngine;
 public class TreadmillStation : States
 {
     public static int runCount = 0;
-    private float timeRemaining = 4;
+    private float timeRemaining = 10.0f;
     //private bool startExercising = false;
 
     public TreadmillStation(BOT statemachine)
@@ -22,10 +22,6 @@ public class TreadmillStation : States
     public override void Exit()
     {
         Debug.Log("Exiting TREADMILLSTATION State");
-        if(runCount == 2)
-        {
-            runCount -= 2;
-        }
     }
 
     IEnumerator Coroutine_TakePetForRun(float duration)
@@ -44,7 +40,8 @@ public class TreadmillStation : States
         }
         else
         {
-            runCount =+ 1;
+            runCount += 1;
+            Debug.Log("runCount =" + runCount);
             Debug.Log("The pet has run for 20 minutes.");
             fsm.SetCurrentState(StateTypes.DRINKINGSTATION);
         }   

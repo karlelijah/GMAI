@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Haircut : States
 {
-    private float timeRemaining = 4f;
+    private float timeRemaining = 10.0f;
     public Haircut(BOT statemachine)
     {
         fsm = statemachine;

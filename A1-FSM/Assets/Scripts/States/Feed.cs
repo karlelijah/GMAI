@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Feed : States
 {
-    private float timeRemaining = 4f;
+    private float timeRemaining = 10.0f;
     public static bool foodPrepared = false;
+
     public Feed(BOT statemachine)
     {
         fsm = statemachine;
@@ -22,16 +23,17 @@ public class Feed : States
     }
     public void checkForFood()
     {
-        Debug.Log("The pet has just started been brought to the Feeding Station.");
+        Debug.Log("The pet has been brought to the Feeding Station.");
         Debug.Log("Checking if there is food prepared for the pet");
         
-        if(foodPrepared = false)
+        if(foodPrepared == false)
         {
             Debug.Log("There is no food prepared. BOT will head to the Food Store and prepare food.");
             fsm.SetCurrentState(StateTypes.FOODPREPARATION);
         }
-        if(foodPrepared = true)
+        if(foodPrepared == true)
         {
+            Debug.Log("The food has been prepared.");
             fsm.StartCoroutine(Coroutine_FeedPet(timeRemaining));
         }
     }
@@ -45,6 +47,7 @@ public class Feed : States
         else
         {
             Debug.Log("The food has been given to the pet.");
+            foodPrepared = false;
             float dt = 0.0f;
             while(dt < duration)
             {

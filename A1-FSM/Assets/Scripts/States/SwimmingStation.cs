@@ -5,7 +5,7 @@ using UnityEngine;
 public class SwimmingStation : States
 {
     public static int swimCount = 0;
-    private float timeRemaining = 4;
+    private float timeRemaining = 10.0f;
     //private bool startExercising = false;
 
     public SwimmingStation(BOT statemachine)
@@ -22,15 +22,11 @@ public class SwimmingStation : States
     public override void Exit()
     {
         Debug.Log("Exiting SWIMMINGSTATION State");
-        if(swimCount == 2)
-        {
-            swimCount -= 2;
-        }
     }
 
     IEnumerator Coroutine_TakePetForSwim(float duration)
     {
-        Debug.Log("The pet has just started running.");
+        Debug.Log("The pet has just started swimming.");
         float dt = 0.0f;
         while(dt < duration)
         {
@@ -44,7 +40,8 @@ public class SwimmingStation : States
         }
         else
         {
-            swimCount =+ 1;
+            swimCount += 1;
+            Debug.Log("swimCount = " + swimCount);
             Debug.Log("The pet has swum for 20 minutes.");
             fsm.SetCurrentState(StateTypes.DRINKINGSTATION);
         }      

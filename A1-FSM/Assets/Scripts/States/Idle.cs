@@ -11,7 +11,7 @@ public class IDLE : States
 
     public override void Enter()
     {
-        if (fsm.OwnerReturned)
+        if (fsm.OwnerReturned) //to check whether a pet's owner has returned
         {
             Debug.Log("The owner has returned.");
             fsm.SetCurrentState(StateTypes.RETURN);

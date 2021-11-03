@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class FoodPreparation : States
 {
-    private float timeRemaining = 4f;
+    private List<string> MeatList = new List<string>{"Tuna", "Chicken", "Beef"};
+    private List<string> GreensList = new List<string>{"Fruits", "Vegetables"};
+    public static List<string> MeatSelected = new List<string>{};
+    public static List<string> GreensSelected = new List<string>{};
+    
+    private float timeRemaining = 10.0f;
     public FoodPreparation(BOT statemachine)
     {
         fsm = statemachine;
@@ -35,9 +40,29 @@ public class FoodPreparation : States
                 yield return new WaitForSeconds(1.0f);
                 dt += 1.0f;
             }
+            SelectFood();
             Feed.foodPrepared = true;
             Debug.Log("The pet has been prepared. BOT heading to the Feeding Station.");
             fsm.SetCurrentState(StateTypes.FEED);
         }       
+    }
+    private void SelectFood()
+    {
+        MeatSelected.Clear();
+        GreensSelected.Clear();
+
+        int randomNumber1 = Random.Range(1,3);
+        int randomNumber2 = Random.Range(1,2);
+        MeatSelected.Add(MeatList[randomNumber1]);
+        GreensSelected.Add(GreensList[randomNumber2]);
+
+        foreach(var x in MeatSelected)
+        {
+            Debug.Log("Bot has selected " + x.ToString());
+        }
+        foreach(var x in GreensSelected)
+        {
+            Debug.Log("Bot has selected " + x.ToString());
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DrinkingStation : States
 {
-    private float timeRemaining = 4;
+    private float timeRemaining = 10.0f;
     public DrinkingStation(BOT statemachine)
     {
         fsm = statemachine;
@@ -36,20 +36,33 @@ public class DrinkingStation : States
         }
         else
         {
-            if(SwimmingStation.swimCount < 2)
+            if(Transaction.bundleSelected.Contains("D"))
             {
-                Debug.Log("Bot will bring the pet back to the swimming pool for the second round.");
-                fsm.SetCurrentState(StateTypes.SWIMMINGSTATION);
+                if(SwimmingStation.swimCount == 2)
+                {
+                    Debug.Log("The pet has finished 2 rounds of swimming and will head for their grooming now.");
+                    SwimmingStation.swimCount -= 2;
+                    fsm.SetCurrentState(StateTypes.HAIRCUT);
+                }
+                else
+                {
+                    Debug.Log("Bot will bring the pet back to the swimming pool for the second round.");
+                    fsm.SetCurrentState(StateTypes.SWIMMINGSTATION);
+                }
             }
-            if(TreadmillStation.runCount < 2)
+            if(Transaction.bundleSelected.Contains("C"))
             {
-                Debug.Log("Bot will bring the pet back to the treadmill for the second round.");
-                fsm.SetCurrentState(StateTypes.TREADMILLSTATION);
-            }
-            if(SwimmingStation.swimCount == 2 || TreadmillStation.runCount == 2)
-            {
-                Debug.Log("The pet has finished 2 rounds of exercise and will head for their grooming now.");
-                fsm.SetCurrentState(StateTypes.HAIRCUT);
+                if(TreadmillStation.runCount == 2)
+                {
+                    Debug.Log("The pet has finished 2 rounds of running and will head for their grooming now.");
+                    TreadmillStation.runCount -= 2;
+                    fsm.SetCurrentState(StateTypes.HAIRCUT);
+                }
+                else
+                {
+                    Debug.Log("Bot will bring the pet back to the treadmill for the second round.");
+                    fsm.SetCurrentState(StateTypes.TREADMILLSTATION);
+                }
             }
         }
     }
