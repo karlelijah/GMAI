@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Feed : States
 {
-    private float timeRemaining = 10.0f;
-    public static bool foodPrepared = false;
+    private float timeRemaining = 10.0f; //Amount of time for the pet to eat the food
+    public static bool foodPrepared = false; //Set that the food is not prepared if the pet has just arrived at the feeding station for the first time
 
     public Feed(BOT statemachine)
     {
@@ -15,7 +15,7 @@ public class Feed : States
     public override void Enter()
     {
         Debug.Log("Entered FEED State");
-        checkForFood();
+        checkForFood(); //Check if there are any food prepared for the pet
     }
     public override void Exit()
     {
@@ -26,20 +26,21 @@ public class Feed : States
         Debug.Log("The pet has been brought to the Feeding Station.");
         Debug.Log("Checking if there is food prepared for the pet");
         
-        if(foodPrepared == false)
+        if(foodPrepared == false) //If there is no food, go to the Food Store and prepare food for the pet
         {
             Debug.Log("There is no food prepared. BOT will head to the Food Store and prepare food.");
             fsm.SetCurrentState(StateTypes.FOODPREPARATION);
         }
-        if(foodPrepared == true)
+        if(foodPrepared == true) //If there is food, give it to the pet and let them eat
         {
             Debug.Log("The food has been prepared.");
+            //Start duration of the pet eating the food prepared
             fsm.StartCoroutine(Coroutine_FeedPet(timeRemaining));
         }
     }
     IEnumerator Coroutine_FeedPet(float duration)
     {
-        if(fsm.OwnerReturned)
+        if(fsm.OwnerReturned) //Check if the owner has Returned
         {
             Debug.Log("The owner has returned.");
             fsm.SetCurrentState(StateTypes.RETURN);
@@ -49,12 +50,14 @@ public class Feed : States
             Debug.Log("The food has been given to the pet.");
             foodPrepared = false;
             float dt = 0.0f;
+            //Start timer for the pet eating the food
             while(dt < duration)
             {
                 yield return new WaitForSeconds(1.0f);
                 dt += 1.0f;
             }
             Debug.Log("The pet has finished eating.");
+            //Once done eating, go to the Holding Area
             fsm.SetCurrentState(StateTypes.HOLDINGAREA);
         }
     }

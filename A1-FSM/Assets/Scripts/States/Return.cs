@@ -12,7 +12,7 @@ public class Return : States
     public override void Enter()
     {
         Debug.Log("Entered RETURN State");
-        handOverPetToOwner();
+        handOverPetToOwner(); //Return the pet to its rightful owner
     }
     public override void Exit()
     {
@@ -20,8 +20,7 @@ public class Return : States
     }
     public void handOverPetToOwner()
     {
-        //fsm.OwnerReturned = false;
-        //fsm.petWaiting = false;
+        //Return the pet to its owner
         Debug.Log("Pet has been returned to owner");
         fsm.SetCurrentState(StateTypes.IDLE);
     }

@@ -13,9 +13,9 @@ public class HoldingArea : States
     public override void Enter()
     {
         Debug.Log("Entered HOLDINGAREA State");
-        // wait and check for may be a few second to see if the owener has return.
-        petInHoldingArea();
-        checkForOwner();
+        //Wait and check for may be a few second to see if the owner has returned.
+        petInHoldingArea(); //Set the pet to be in the Holding Area
+        checkForOwner(); //Check if the owner has Returned
     }
 
     public override void Exit()
@@ -25,17 +25,17 @@ public class HoldingArea : States
     
     public void petInHoldingArea()
     {
+        //Put the pet in the Holding Area
         Debug.Log("The pet is now in the Holding Area waiting for its owner...");
-        //fsm.petWaiting = true;
     }
     public void checkForOwner()
     {
-        if(fsm.OwnerReturned)
+        if(fsm.OwnerReturned) //Check if the owner has returned
         {
             Debug.Log("The owner has returned.");
             fsm.SetCurrentState(StateTypes.RETURN);
         }
-        else
+        else //Return to the counter if the owner has not returned
         {
             Debug.Log("The owner has not returned");
             fsm.SetCurrentState(StateTypes.IDLE);

@@ -6,7 +6,6 @@ public class Transaction : States
 {
     private List<string> bundleList = new List<string>{"A", "B", "C", "D"};
     public static List<string> bundleSelected = new List<string>{};
-
     //How can I implement whether the customer has made payment?
 
     public Transaction(BOT statemachine)
@@ -16,7 +15,7 @@ public class Transaction : States
 
     public override void Enter()
     {
-        if(fsm.OwnerReturned)
+        if(fsm.OwnerReturned) //Check if the owner has returned
         {
             Debug.Log("The owner has returned.");
             fsm.SetCurrentState(StateTypes.RETURN);
@@ -37,14 +36,15 @@ public class Transaction : States
     private void selectBundle()
     {
         //Randomize the list to retrieve what the bundle will be for the current customer
-        bundleSelected.Clear();
-        int randomNumber = Random.Range(1,4);
-        bundleSelected.Add(bundleList[randomNumber]);
+        bundleSelected.Clear(); //Clear the current list so that there is only one bundle at a time
+        int randomNumber = Random.Range(1,4); //Randomize a number from 1 to 4
+        bundleSelected.Add(bundleList[randomNumber]); //Add that Bundle according to the random number into the bundleSelected List
     }
 
     private void checkBundle()
     {
         //check what bundle the customer has chosen
+        //Once bundle is chosen, go to the according station
         if (bundleSelected.Contains("A"))
         {
             Debug.Log("The customer has chosen Set A and has paid $25.");
@@ -65,7 +65,7 @@ public class Transaction : States
             Debug.Log("The customer has chosen Set D and has paid $55.");
             fsm.SetCurrentState(StateTypes.SWIMMINGSTATION);
         }
-        else
+        else //If the bundleSelected List is empty
         {
             Debug.Log("Waiting for the customer to choose a bundle...");
         }  

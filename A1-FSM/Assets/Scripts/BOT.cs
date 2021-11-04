@@ -59,7 +59,7 @@ public class BOT : MonoBehaviour
         // owner return can be achieved by clicing the R button.
         if(Input.GetKeyDown(KeyCode.R))
         {
-            //SetCurrentState(StateTypes.RETURN);
+            //Get the input from the player to press 'R'
             OwnerReturned = true;
         }
     }
