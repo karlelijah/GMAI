@@ -14,28 +14,46 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mVariableData:
     variableStartIndex: 
-    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Customer1","IsShared":true,"IsGlobal":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Haircut
-      Station","IsShared":true,"IsGlobal":true},{"Type":"BehaviorDesigner.Runtime.SharedString","Name":"Bundle
-      Chosen","IsShared":true,"IsGlobal":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"Entrance","IsShared":true,"IsGlobal":true,"Vector3mValue":"(142.62,5.536494,84.66)"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"CurrentCustomer","IsShared":true,"IsGlobal":true},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"ComparedBundle","IsShared":true,"IsGlobal":true,"Int32mValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Wait
-      Time","IsShared":true,"IsGlobal":true,"SinglemValue":1},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Entrance
-      Counter","IsShared":true,"IsGlobal":true,"GameObjectmValue":1},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Customer)","IsShared":true,"IsGlobal":true,"GameObjectmValue":2},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (NPC)","IsShared":true,"IsGlobal":true,"GameObjectmValue":3},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (HaircutStation)","IsShared":true,"IsGlobal":true,"GameObjectmValue":4},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Shower Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Detailing Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Drinking Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":7},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Feeding Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":8},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Swimming Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":9},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Treadmill Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":10},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
-      (Holding Area)","IsShared":true,"IsGlobal":true,"GameObjectmValue":11},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Has
-      Owner Returned?","IsShared":true,"IsGlobal":true,"BooleanmValue":false}]}'
+    JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Customer1","IsShared":true,"IsGlobal":true,"GameObjectmValue":0},{"Type":"BehaviorDesigner.Runtime.SharedString","Name":"Bundle
+      Chosen","IsShared":true,"IsGlobal":true,"StringmValue":"B"},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"CurrentCustomer","IsShared":true,"IsGlobal":true},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"Entrance","IsShared":true,"IsGlobal":true,"Vector3mValue":"(142.62,5.536494,84.66)"},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"ComparedBundle","IsShared":true,"IsGlobal":true,"Int32mValue":-1},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Entrance
+      Counter","IsShared":true,"IsGlobal":true},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Customer)","IsShared":true,"IsGlobal":true,"GameObjectmValue":1},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (NPC)","IsShared":true,"IsGlobal":true,"GameObjectmValue":2},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (HaircutStation)","IsShared":true,"IsGlobal":true,"GameObjectmValue":3},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Shower Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":4},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Detailing Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":5},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Drinking Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":6},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Feeding Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":7},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Swimming Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":8},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Treadmill Station)","IsShared":true,"IsGlobal":true,"GameObjectmValue":9},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Dog
+      (Holding Area)","IsShared":true,"IsGlobal":true,"GameObjectmValue":10},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"Has
+      Owner Returned?","IsShared":true,"IsGlobal":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Treadmill
+      Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":11},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Swimming
+      Pool Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":12},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Drinking
+      Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":13},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Haircut
+      Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":14},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Shower
+      Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":15},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Detailing
+      Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":16},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Feeding
+      Station","IsShared":true,"IsGlobal":true,"GameObjectmValue":17},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Food
+      Preparation","IsShared":true,"IsGlobal":true,"GameObjectmValue":18},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Holding
+      Area","IsShared":true,"IsGlobal":true,"GameObjectmValue":19},{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Idle","IsShared":true,"IsGlobal":true,"GameObjectmValue":20},{"Type":"BehaviorDesigner.Runtime.SharedVector3","Name":"Starting
+      Position","IsShared":true,"IsGlobal":true,"Vector3mValue":"(133.47,2.85,85.31)"},{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":"Waiting
+      Time","IsShared":true,"IsGlobal":true,"Int32mValue":1}]}'
     fieldSerializationData:
       typeName: []
       fieldNameHash: 
       startIndex: 
       dataPosition: 
       unityObjects:
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
+      - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
       - {fileID: 0}
